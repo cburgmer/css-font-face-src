@@ -14,22 +14,16 @@ Example
 ```js
 var parser = require('css-font-face-src');
 
-parser.parse('local("Fake Font"), url("fake.otf") format("opentype"), url("fake.woff"), local("Another Fake Font")');
+parser.parse('local("The Font"), url("font.otf") format("opentype"), url("font.woff"), local("Another Font")');
 ```
 
 will return
 
 ```js
-[{
-    local: 'Fake Font'
-}, {
-    url: 'fake.otf',
-    format: 'opentype'
-}, {
-    url: 'fake.woff'
-}, {
-    local: 'Another Fake Font'
-}]
+[ { local: 'The Font' },
+  { url: 'font.otf', format: 'opentype' },
+  { url: 'font.woff', format: undefined },
+  { local: 'Another Font' } ]
 ```
 
 [![Build Status](https://travis-ci.org/cburgmer/css-font-face-src.svg?branch=master)](https://travis-ci.org/cburgmer/css-font-face-src)
