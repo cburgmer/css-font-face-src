@@ -66,4 +66,36 @@ describe("Parser", function () {
             expect(parse).toEqual([]);
         });
     });
+
+    describe("serialize", function () {
+        it("should serialize a single local font value", function () {
+            var text = parser.serialize(parser.parse('local("font name")'));
+
+            expect(text).toEqual('local("font name")');
+        });
+
+        it("should serialize a single url value", function () {
+            var text = parser.serialize(parser.parse('url("font.woff")'));
+
+            expect(text).toEqual('url("font.woff")');
+        });
+
+        it("should serialize a single url value with a format", function () {
+            var text = parser.serialize(parser.parse('url("font.woff") format("woff")'));
+
+            expect(text).toEqual('url("font.woff") format("woff")');
+        });
+
+        it("should serialize a mix of multiple values", function () {
+            var text = parser.serialize(parser.parse("local('The Font'), url('font.otf') format('opentype'), url('font.woff'), local(\"Another Font\")"));
+
+            expect(text).toEqual('local("The Font"), url("font.otf") format("opentype"), url("font.woff"), local("Another Font")');
+        });
+
+        it("should handle an empty string", function () {
+            var text = parser.serialize(parser.parse(""));
+
+            expect(text).toEqual('');
+        });
+    });
 });
