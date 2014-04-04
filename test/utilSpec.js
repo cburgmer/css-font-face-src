@@ -53,4 +53,21 @@ describe("Util", function () {
             }).toThrow(new Error("Invalid url"));
         });
     });
+
+    describe("unquoteString", function () {
+        it("should unquote a double quoted string", function () {
+            var url = util.unquoteString('"a string"');
+            expect(url).toEqual('a string');
+        });
+
+        it("should unquote a single quoted string", function () {
+            var url = util.unquoteString("'a string'");
+            expect(url).toEqual('a string');
+        });
+
+        it("should pass a string that is not quoted", function () {
+            var url = util.unquoteString("a string");
+            expect(url).toEqual('a string');
+        });
+    });
 });
