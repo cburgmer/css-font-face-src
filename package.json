@@ -4,7 +4,7 @@
   "description": "A CSS @font-face src property value parser",
   "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jshint lib/ test/ && jasmine-node test/ --captureExceptions"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,9 @@
   "license": "BSD-2-Clause",
   "bugs": {
     "url": "https://github.com/cburgmer/css-font-face-src/issues"
+  },
+  "devDependencies": {
+    "jasmine-node": "~1.14.3",
+    "jshint": "~2.5.0"
   }
 }
