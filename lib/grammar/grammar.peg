@@ -1,0 +1,31 @@
+{
+  var util = require('../util');
+}
+
+start
+  = sourceEntries
+  / { return []}
+
+sourceEntries
+  = x:sourceEntry "," [ ]* xs:sourceEntries { return [x].concat(xs); }
+  / entry:sourceEntry { return [entry]; }
+
+sourceEntry
+  = urlEntry
+  / localEntry
+
+urlEntry
+  = url:url [ ]+ format:format  { return {url: url, format: format}; }
+  / url:url  { return {url: url}; }
+
+url
+  = "url(" value:value ")" { return value; }
+
+format
+  = "format(" value:value ")" { return value; }
+
+localEntry
+  = "local(" value:value ")" { return {local: value}; }
+
+value "value"
+  = value:[^)]+ { return util.extractValue(value.join("")); }

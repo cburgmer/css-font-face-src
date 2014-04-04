@@ -5,19 +5,19 @@ describe("Parser", function () {
         it("should throw an error on an invalid value", function () {
             expect(function () {
                 parser.parse("invalid text");
-            }).toThrow(new Error("Invalid value"));
+            }).toThrow(new parser.SyntaxError('Expected "local(", "url(" or end of input but "i" found.', 1));
         });
 
         it("should throw an error on an invalid value together with a valid one", function () {
             expect(function () {
                 parser.parse('"invalid url", url("font.woff")');
-            }).toThrow(new Error("Invalid value"));
+            }).toThrow(new parser.SyntaxError('Expected "local(", "url(" or end of input but "\\"" found.', 1));
         });
 
         it("should throw an error on an invalid value together with a valid one in the reverse order", function () {
             expect(function () {
                 parser.parse('url("font.woff"), "invalid url"');
-            }).toThrow(new Error("Invalid value"));
+            }).toThrow(new parser.SyntaxError('Expected "local(", "url(" or [ ] but "\\"" found.', 18));
         });
 
         it("should parse a single local font value", function () {
@@ -46,7 +46,7 @@ describe("Parser", function () {
         });
 
         it("should parse a mix of multiple values", function () {
-            var parse = parser.parse("local('The Font'), url('font.otf') format('opentype'), url('font.woff'), local(\"Another Font\")");
+            var parse = parser.parse("local('The Font'), url( 'font.otf') format('opentype'), url(font.woff), local(\"Another Font\")");
 
             expect(parse).toEqual([{
                 local: 'The Font'
