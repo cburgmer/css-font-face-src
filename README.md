@@ -12,24 +12,24 @@ Example
 -------
 
 ```js
-    var parser = require('css-font-face-src');
+var parser = require('css-font-face-src');
 
-    parser.parse('local("Fake Font"), url("fake.otf") format("opentype"), url("fake.woff"), local("Another Fake Font")');
+parser.parse('local("Fake Font"), url("fake.otf") format("opentype"), url("fake.woff"), local("Another Fake Font")');
 ```
 
 will return
 
 ```js
-    [{
-        local: 'Fake Font'
-    }, {
-        url: 'fake.otf',
-        format: 'opentype'
-    }, {
-        url: 'fake.woff'
-    }, {
-        local: 'Another Fake Font'
-    }]
+[{
+    local: 'Fake Font'
+}, {
+    url: 'fake.otf',
+    format: 'opentype'
+}, {
+    url: 'fake.woff'
+}, {
+    local: 'Another Fake Font'
+}]
 ```
 
 [![Build Status](https://travis-ci.org/cburgmer/css-font-face-src.svg?branch=master)](https://travis-ci.org/cburgmer/css-font-face-src)
