@@ -50,7 +50,55 @@ describe("Util", function () {
         it("should throw an exception on invalid CSS URL", function () {
             expect(function () {
                 util.extractCssUrl('invalid_stuff');
-            }).toThrow(new Error("Invalid url"));
+            }).toThrow(new Error("Invalid value"));
+        });
+    });
+
+    describe("extractLocalFontName", function () {
+        it("should extract a local font name", function () {
+            var fontName = util.extractLocalFontName('local(the font)');
+            expect(fontName).toEqual("the font");
+        });
+
+        it("should handle double quotes", function () {
+            var fontName = util.extractLocalFontName('local("the font")');
+            expect(fontName).toEqual("the font");
+        });
+
+        it("should handle single quotes", function () {
+            var fontName = util.extractLocalFontName("local('the font')");
+            expect(fontName).toEqual("the font");
+        });
+
+        it("should handle whitespace", function () {
+            var fontName = util.extractLocalFontName('local(   the font )');
+            expect(fontName).toEqual("the font");
+        });
+
+        it("should also handle tab, line feed, carriage return and form feed", function () {
+            var fontName = util.extractLocalFontName('local(\t\r\f\nthe font\t\r\f\n)');
+            expect(fontName).toEqual("the font");
+        });
+
+        it("should keep any other whitspace", function () {
+            var fontName = util.extractLocalFontName('local(\u2003the font)');
+            expect(fontName).toEqual("\u2003the font");
+        });
+
+        it("should handle whitespace with double quotes", function () {
+            var fontName = util.extractLocalFontName('local( "the font"  )');
+            expect(fontName).toEqual("the font");
+        });
+
+        it("should handle whitespace with single quotes", function () {
+            var fontName = util.extractLocalFontName("local( 'the font'  )");
+            expect(fontName).toEqual("the font");
+        });
+
+        it("should throw an exception on invalid local font", function () {
+            expect(function () {
+                util.extractLocalFontName('invalid_stuff');
+            }).toThrow(new Error("Invalid value"));
         });
     });
 
