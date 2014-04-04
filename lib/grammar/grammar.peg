@@ -27,5 +27,5 @@ format
 localEntry
   = "local(" value:value ")" { return {local: value}; }
 
-value "value"
-  = value:[^)]+ { return util.extractValue(value.join("")); }
+value
+  = chars:[^)]+ { return util.extractValue(chars.join("")); }
