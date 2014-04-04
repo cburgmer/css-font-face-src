@@ -1,0 +1,28 @@
+{
+  "name": "css-font-face-src",
+  "version": "0.1.0",
+  "description": "A CSS @font-face src property value parser",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cburgmer/css-font-face-src"
+  },
+  "keywords": [
+    "css",
+    "parser",
+    "value",
+    "font",
+    "font-face"
+  ],
+  "author": {
+    "name": "Christoph Burgmer",
+    "email": "christoph.burgmer@gmail.com"
+  },
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/cburgmer/css-font-face-src/issues"
+  }
+}
