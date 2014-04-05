@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jshint lib/ --exclude lib/grammar.js test/ && jasmine-node test/ --captureExceptions",
-    "prepublish": "pegjs lib/grammar.peg lib/grammar.js"
+    "prepublish": "./node_modules/.bin/pegjs lib/grammar.peg lib/grammar.js"
   },
   "repository": {
     "type": "git",
