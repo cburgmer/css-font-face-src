@@ -22,7 +22,7 @@ will return
 ```js
 [ { local: 'The Font' },
   { url: 'font.otf', format: 'opentype' },
-  { url: 'font.woff', format: undefined },
+  { url: 'font.woff' },
   { local: 'Another Font' } ]
 ```
 
