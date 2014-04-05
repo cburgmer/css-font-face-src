@@ -1,6 +1,6 @@
 {
   "name": "css-font-face-src",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A CSS @font-face src property value parser",
   "main": "lib/index.js",
   "scripts": {
