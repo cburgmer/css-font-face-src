@@ -17,7 +17,7 @@ describe("Parser", function () {
         it("should throw an error on an invalid value together with a valid one in the reverse order", function () {
             expect(function () {
                 parser.parse('url("font.woff"), "invalid url"');
-            }).toThrow(new parser.SyntaxError('Expected "local(", "url(" or [ ] but "\\"" found.', 18));
+            }).toThrow(new parser.SyntaxError('Expected "local(", "url(" or [ \\t\\r\\n\\f] but "\\"" found.', 18));
         });
 
         it("should parse a single local font value", function () {
@@ -57,6 +57,25 @@ describe("Parser", function () {
                 url: 'font.woff'
             }, {
                 local: 'Another Font'
+            }]);
+        });
+
+        it("should parse white space between values", function () {
+            var parse = parser.parse('url("font.woff") \t\r\n\f, \t\r\n\furl("font.eot")');
+
+            expect(parse).toEqual([{
+                url: 'font.woff'
+            }, {
+                url: 'font.eot'
+            }]);
+        });
+
+        it("should parse white space between a format", function () {
+            var parse = parser.parse('url("font.woff") \t\r\n\fformat("woff")');
+
+            expect(parse).toEqual([{
+                url: 'font.woff',
+                format: 'woff'
             }]);
         });
 
