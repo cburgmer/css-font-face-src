@@ -2,11 +2,11 @@
  * The @font-face src grammar used. http://www.w3.org/TR/css-fonts-3/#src-desc
  *
  * Update the generated parser by running
- *   $ npm install
+ *   $ ./node_modules/.bin/pegjs lib/grammar/grammar.peg lib/grammar/index.js
  */
 
 {
-  var util = require('./util');
+  var util = require('../util');
 }
 
 start

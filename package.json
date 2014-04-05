@@ -4,8 +4,7 @@
   "description": "A CSS @font-face src property value parser",
   "main": "lib/index.js",
   "scripts": {
-    "test": "jshint lib/ --exclude lib/grammar.js test/ && jasmine-node test/ --captureExceptions",
-    "prepublish": "./node_modules/.bin/pegjs lib/grammar.peg lib/grammar.js"
+    "test": "jshint lib/ --exclude lib/grammar/index.js test/ && jasmine-node test/ --captureExceptions"
   },
   "repository": {
     "type": "git",
