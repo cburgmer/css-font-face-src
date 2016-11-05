@@ -1,3 +1,4 @@
+/* jshint phantom: true */
 var system = require('system');
 var fs = require('fs');
 var page = require('webpage').create();
