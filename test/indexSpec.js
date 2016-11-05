@@ -5,19 +5,19 @@ describe("Parser", function () {
         it("should throw an error on an invalid value", function () {
             expect(function () {
                 parser.parse("invalid text");
-            }).toThrow(new parser.SyntaxError('Expected "local(", "url(" or end of input but "i" found.', 1));
+            }).toThrow(new parser.SyntaxError('Expected "local(", "url(", or end of input but "i" found.', 1));
         });
 
         it("should throw an error on an invalid value together with a valid one", function () {
             expect(function () {
                 parser.parse('"invalid url", url("font.woff")');
-            }).toThrow(new parser.SyntaxError('Expected "local(", "url(" or end of input but "\\"" found.', 1));
+            }).toThrow(new parser.SyntaxError('Expected "local(", "url(", or end of input but "\\"" found.', 1));
         });
 
         it("should throw an error on an invalid value together with a valid one in the reverse order", function () {
             expect(function () {
                 parser.parse('url("font.woff"), "invalid url"');
-            }).toThrow(new parser.SyntaxError('Expected "local(", "url(" or [ \\t\\r\\n\\f] but "\\"" found.', 18));
+            }).toThrow(new parser.SyntaxError('Expected "local(", "url(", or [ \\t\\r\\n\\x0C] but "\\"" found.', 18));
         });
 
         it("should parse a single local font value", function () {

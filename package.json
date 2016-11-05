@@ -5,7 +5,7 @@
   "main": "dist/css-font-face-src.js",
   "scripts": {
     "test": "jshint lib/ --exclude lib/grammar/index.js test/ && jasmine-node test/ --captureExceptions",
-    "grammar": "pegjs lib/grammar/grammar.peg lib/grammar/index.js",
+    "grammar": "pegjs -o lib/grammar/index.js lib/grammar/grammar.peg",
     "dist": "browserify --standalone cssFontFaceSrc lib/index.js | derequire > dist/css-font-face-src.js && phantomjs test/loadPage.js test/dist_test.html | grep font.woff"
   },
   "repository": {

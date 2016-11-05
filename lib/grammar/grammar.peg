@@ -11,7 +11,7 @@
 
 start
   = sourceEntries
-  / { return []}
+  / '' { return [] }
 
 sourceEntries
   = x:sourceEntry whitespace* "," whitespace* xs:sourceEntries { return [x].concat(xs); }
