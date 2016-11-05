@@ -4,9 +4,13 @@
   "description": "A CSS @font-face src property value parser",
   "main": "dist/css-font-face-src.js",
   "scripts": {
-    "test": "jshint lib/ --exclude lib/grammar/index.js test/ && jasmine-node test/ --captureExceptions",
     "grammar": "pegjs -o lib/grammar/index.js lib/grammar/grammar.peg",
-    "dist": "browserify --standalone cssFontFaceSrc lib/index.js | derequire > dist/css-font-face-src.js && phantomjs test/loadPage.js test/dist_test.html | grep font.woff"
+    "jshint": "jshint lib/ --exclude lib/grammar/index.js test/",
+    "specs": "jasmine-node test/ --captureExceptions",
+    "test": "npm run grammar && npm run jshint && npm run specs",
+    "umd": "browserify --standalone cssFontFaceSrc lib/index.js | derequire > dist/css-font-face-src.js",
+    "smoketest": "phantomjs test/loadPage.js test/dist_test.html | grep font.woff",
+    "dist": "npm run umd && npm run smoketest"
   },
   "repository": {
     "type": "git",
