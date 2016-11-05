@@ -2,10 +2,11 @@
   "name": "css-font-face-src",
   "version": "0.2.2",
   "description": "A CSS @font-face src property value parser",
-  "main": "lib/index.js",
+  "main": "dist/css-font-face-src.js",
   "scripts": {
     "test": "jshint lib/ --exclude lib/grammar/index.js test/ && jasmine-node test/ --captureExceptions",
-    "grammar": "pegjs lib/grammar/grammar.peg lib/grammar/index.js"
+    "grammar": "pegjs lib/grammar/grammar.peg lib/grammar/index.js",
+    "dist": "browserify --standalone cssFontFaceSrc lib/index.js | derequire > dist/css-font-face-src.js"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,8 @@
     "url": "https://github.com/cburgmer/css-font-face-src/issues"
   },
   "devDependencies": {
+    "browserify": "^13.1.1",
+    "derequire": "^2.0.3",
     "jasmine-node": "^1.14.3",
     "jshint": "^2.9.4",
     "pegjs": "^0.10.0"
