@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jshint lib/ --exclude lib/grammar/index.js test/ && jasmine-node test/ --captureExceptions",
     "grammar": "pegjs lib/grammar/grammar.peg lib/grammar/index.js",
-    "dist": "browserify --standalone cssFontFaceSrc lib/index.js | derequire > dist/css-font-face-src.js"
+    "dist": "browserify --standalone cssFontFaceSrc lib/index.js | derequire > dist/css-font-face-src.js && phantomjs test/loadPage.js test/dist_test.html | grep font.woff"
   },
   "repository": {
     "type": "git",
@@ -32,6 +32,7 @@
     "derequire": "^2.0.3",
     "jasmine-node": "^1.14.3",
     "jshint": "^2.9.4",
-    "pegjs": "^0.10.0"
+    "pegjs": "^0.10.0",
+    "phantomjs": "^2.1.7"
   }
 }
