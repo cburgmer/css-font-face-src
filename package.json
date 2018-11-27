@@ -34,8 +34,8 @@
   "devDependencies": {
     "browserify": "^13.1.1",
     "derequire": "^2.0.3",
-    "jasmine-node": "^1.14.3",
-    "jshint": "^2.9.4",
+    "jasmine-node": "^2.0.1",
+    "jshint": "^2.9.6",
     "pegjs": "^0.10.0",
     "phantomjs": "^2.1.7"
   }
