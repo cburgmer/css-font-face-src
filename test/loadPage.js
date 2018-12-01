@@ -1,17 +1,27 @@
-/* jshint phantom: true */
-var system = require('system');
-var fs = require('fs');
-var page = require('webpage').create();
-page.onConsoleMessage = function(msg) {
-    console.log(msg);
-};
-var path = system.args[1];
-if (path.indexOf('://') < 0) {
-    if (!fs.isAbsolute(path)) {
-        path = fs.workingDirectory + '/' + path;
+/* jshint node: true */
+const path = require('path');
+const puppeteer = require('puppeteer');
+
+const fileUrl = (p) => {
+    if (p.indexOf('://') >= 0) {
+        return p;
     }
-    path = 'file://' + path;
-}
-page.open(path, function () {
-    phantom.exit();
-});
+
+    if (path.isAbsolute(p)) {
+        return 'file://' + path;
+    }
+    return 'file://' + process.cwd() + '/' + p;
+};
+
+
+
+puppeteer.launch()
+    .then(browser => {
+        browser.newPage()
+            .then(page => {
+                page.on('console', msg => console.log(msg.text()));
+                return page;
+            })
+            .then(page => page.goto(fileUrl(process.argv[2])))
+            .then(() => browser.close());
+    }) ;

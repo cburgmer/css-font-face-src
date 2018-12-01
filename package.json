@@ -9,7 +9,7 @@
     "specs": "jasmine-node test/ --captureExceptions",
     "test": "npm run grammar && npm run jshint && npm run specs",
     "umd": "browserify --standalone cssFontFaceSrc lib/index.js | derequire > dist/css-font-face-src.js",
-    "smoketest": "phantomjs test/loadPage.js test/dist_test.html | grep font.woff",
+    "smoketest": "node test/loadPage.js test/dist_test.html | grep font.woff",
     "dist": "npm run umd && npm run smoketest"
   },
   "repository": {
@@ -37,6 +37,6 @@
     "jasmine-node": "^2.0.1",
     "jshint": "^2.9.6",
     "pegjs": "^0.10.0",
-    "phantomjs": "^2.1.7"
+    "puppeteer": "^1.11.0"
   }
 }
