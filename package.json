@@ -32,8 +32,8 @@
     "url": "https://github.com/cburgmer/css-font-face-src/issues"
   },
   "devDependencies": {
-    "browserify": "^13.1.1",
-    "derequire": "^2.0.3",
+    "browserify": "^13.3.0",
+    "derequire": "^2.0.6",
     "jasmine-node": "^2.0.1",
     "jshint": "^2.9.6",
     "pegjs": "^0.10.0",
