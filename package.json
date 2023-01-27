@@ -10,7 +10,7 @@
     "test": "npm run grammar && npm run jshint && npm run specs",
     "umd": "browserify --standalone cssFontFaceSrc lib/index.js | derequire > dist/css-font-face-src.js",
     "smoketest": "node test/loadPage.js test/dist_test.html | grep font.woff",
-    "dist": "npm run umd && npm run smoketest"
+    "dist": "npm run grammar && npm run umd && npm run smoketest"
   },
   "repository": {
     "type": "git",
