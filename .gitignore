@@ -1,4 +1,3 @@
 *~
+/dist/
 /node_modules/
-/dist/css-font-face-src.js
-/lib/grammar/index.js

@@ -1,0 +1,11 @@
+{
+    "extends": "@tsconfig/recommended",
+    "compilerOptions": {
+        "rootDir": "src",
+        "outDir": "dist/ts",
+        "declaration": true
+    },
+    "include": [
+        "src/**/*.ts"
+    ]
+}

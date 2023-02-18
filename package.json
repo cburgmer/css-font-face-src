@@ -1,16 +1,23 @@
 {
   "name": "css-font-face-src",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A CSS @font-face src property value parser",
-  "main": "dist/css-font-face-src.js",
+  "main": "dist/ts/index.js",
+  "types": "dist/ts/index.d.ts",
+  "browser": "dist/umd/index.js",
   "scripts": {
-    "grammar": "pegjs -o lib/grammar/index.js lib/grammar/grammar.peg",
-    "jshint": "jshint lib/ --exclude lib/grammar/index.js test/",
-    "specs": "jasmine './test/**/*Spec.js'",
-    "test": "npm run grammar && npm run jshint && npm run specs",
-    "umd": "browserify --standalone cssFontFaceSrc lib/index.js | derequire > dist/css-font-face-src.js",
-    "smoketest": "node test/loadPage.js test/dist_test.html | grep font.woff",
-    "dist": "npm run grammar && npm run umd && npm run smoketest"
+    "build": "npm run build:grammar && npm run build:ts && npm run build:umd && npm run build:examples",
+    "build:grammar": "peggy --plugin ts-pegjs -d util:../util -o src/grammar/index.ts src/grammar/grammar.peg # the ../util path is relative to src/grammar, i.e. where the output file src/grammar/index.ts sits",
+    "build:ts": "mkdir -p dist/ts && tsc",
+    "build:umd": "mkdir -p dist/umd && browserify --standalone cssFontFaceSrc src/index.ts -p [ tsify ] -o dist/umd/index.js",
+    "examples": "npm run examples:cjs && npm run examples:esm && npm run examples:ts",
+    "examples:cjs": "node examples/cjs/parse.js && node examples/cjs/serialize.js",
+    "examples:esm": "node examples/esm/parse.mjs && node examples/esm/serialize.mjs",
+    "examples:ts": "ts-node examples/ts/parse.ts && ts-node examples/ts/serialize.ts",
+    "test": "npm run build && npm run test:jest && npm run test:dist",
+    "test:dist": "npm run build:umd && npm run test:smoketest",
+    "test:jest": "jest",
+    "test:smoketest": "ts-node test/dist/loadPage.ts test/dist/dist_test.html | grep font.woff"
   },
   "repository": {
     "type": "git",
@@ -32,11 +39,13 @@
     "url": "https://github.com/cburgmer/css-font-face-src/issues"
   },
   "devDependencies": {
+    "@tsconfig/recommended": "^1.0.2",
+    "@types/jest": "^29.4.0",
     "browserify": "^13.3.0",
-    "derequire": "^2.0.6",
-    "jasmine": "^3.3.1",
-    "jshint": "^2.9.6",
-    "pegjs": "^0.10.0",
-    "puppeteer": "^19.6.1"
+    "puppeteer": "^19.6.1",
+    "ts-jest": "^29.0.5",
+    "ts-node": "^10.9.1",
+    "ts-pegjs": "^3.0.0",
+    "tsify": "^5.0.4"
   }
 }
