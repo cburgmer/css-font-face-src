@@ -1,8 +1,7 @@
-/* jshint node: true */
-const path = require('path');
-const puppeteer = require('puppeteer');
+import path from 'node:path';
+import puppeteer from 'puppeteer';
 
-const fileUrl = (p) => {
+function fileUrl(p: string): string {
     if (p.indexOf('://') >= 0) {
         return p;
     }
@@ -24,4 +23,4 @@ puppeteer.launch()
             })
             .then(page => page.goto(fileUrl(process.argv[2])))
             .then(() => browser.close());
-    }) ;
+    });

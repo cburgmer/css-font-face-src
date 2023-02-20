@@ -5,10 +5,6 @@
  *   $ ./node_modules/.bin/pegjs lib/grammar/grammar.peg lib/grammar/index.js
  */
 
-{
-  var util = require('../util');
-}
-
 start
   = sourceEntries
   / '' { return [] }
