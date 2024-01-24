@@ -18,7 +18,7 @@ sourceEntry
   / localEntry
 
 urlEntry
-  = url:url whitespace+ format:format  { return {url: url, format: format}; }
+  = url:url whitespace* format:format  { return {url: url, format: format}; }
   / url:url  { return {url: url}; }
 
 url

@@ -79,6 +79,15 @@ describe("Parser", () => {
             }]);
         });
 
+        it("should parse no white space between a format", () => {
+            const parse = parser.parse('url("font.woff")format("woff")');
+
+            expect(parse).toEqual([{
+                url: 'font.woff',
+                format: 'woff'
+            }]);
+        });
+
         it("should handle an empty string", () => {
             const parse = parser.parse("");
 
