@@ -16,10 +16,12 @@ export type FontFaceSrcItem = {
     local: string;
     url: never;
     format: never;
+    tech: never;
 } | {
     local: never;
     url: string;
     format?: string;
+    tech?: string;
 };
 
 export function parse(fontFaceSourceValue: string): FontFaceSrcItem[] {
