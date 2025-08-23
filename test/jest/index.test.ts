@@ -44,6 +44,38 @@ describe("Parser", () => {
                 format: 'woff'
             }]);
         });
+        
+        it("should parse a single url value with keyword format", () => {
+            const parse = parser.parse('url("font.woff") format(woff)');
+
+            expect(parse).toEqual([{
+                url: 'font.woff',
+                format: 'woff'
+            }]);
+        });
+        
+        it("should parse a single url value with tech", () => {
+            const parse = parser.parse('url("font.woff") tech(color-COLRv1)');
+
+            expect(parse).toEqual([{
+                url: 'font.woff',
+                tech: 'color-COLRv1'
+            }]);
+        });
+        
+        it("should not allow quoted tech", () => {
+            expect(() => parser.parse('url("font.woff") tech("features-graphite")')).toThrow();
+        });
+        
+        it("should parse a single url value with format and tech", () => {
+            const parse = parser.parse('url("font.woff") format("woff") tech(variations)');
+
+            expect(parse).toEqual([{
+                url: 'font.woff',
+                format: 'woff',
+                tech: 'variations',
+            }]);
+        });
 
         it("should parse a mix of multiple values", () => {
             const parse = parser.parse("local('The Font'), url( 'font.otf') format('opentype'), url(font.woff), local(\"Another Font\")");
@@ -70,12 +102,13 @@ describe("Parser", () => {
             }]);
         });
 
-        it("should parse white space between a format", () => {
-            const parse = parser.parse('url("font.woff") \t\r\n\fformat("woff")');
+        it("should parse white space between format & tech", () => {
+            const parse = parser.parse('url("font.woff") \t\r\n\fformat("woff")\t\r\ntech(variations)');
 
             expect(parse).toEqual([{
                 url: 'font.woff',
-                format: 'woff'
+                format: 'woff',
+                tech: 'variations',
             }]);
         });
 
