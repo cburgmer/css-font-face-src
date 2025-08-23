@@ -1,8 +1,8 @@
 /*
- * The @font-face src grammar used. http://www.w3.org/TR/css-fonts-3/#src-desc
+ * The @font-face src grammar used. https://www.w3.org/TR/css-fonts-4/#font-face-src-parsing
  *
  * Update the generated parser by running
- *   $ ./node_modules/.bin/pegjs lib/grammar/grammar.peg lib/grammar/index.js
+ *   $ npm run build:grammar
  */
 
 start
@@ -17,15 +17,22 @@ sourceEntry
   = urlEntry
   / localEntry
 
-urlEntry
-  = url:url whitespace* format:format  { return {url: url, format: format}; }
-  / url:url  { return {url: url}; }
+urlEntry = url:url format:format? tech:tech? { 
+  return { 
+    url: url, 
+    format: format == null ? undefined : format,
+    tech: tech == null ? undefined : tech,
+  };
+}
 
 url
   = "url(" value:value ")" { return value; }
 
 format
-  = "format(" value:value ")" { return value; }
+  = whitespace* "format(" value:value ")" { return value; }
+
+tech 
+  = whitespace* "tech(" keyword:[a-z0-9A-Z-]+ ")" { return keyword.join(""); }
 
 localEntry
   = "local(" value:value ")" { return {local: value}; }
