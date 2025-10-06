@@ -48,7 +48,7 @@
     "@tsconfig/recommended": "^1.0.2",
     "@types/jest": "^29.4.0",
     "browserify": "^13.3.0",
-    "puppeteer": "^19.6.1",
+    "puppeteer": "^24.23.0",
     "ts-jest": "^29.0.5",
     "ts-node": "^10.9.1",
     "ts-pegjs": "^3.0.0",
