@@ -14,7 +14,7 @@ function fileUrl(p: string): string {
 
 
 
-puppeteer.launch()
+puppeteer.launch({headless: "new"})
     .then(browser => {
         browser.newPage()
             .then(page => {
