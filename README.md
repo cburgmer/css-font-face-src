@@ -140,10 +140,6 @@ will return:
 'local("The Font"), url("font.otf") format("opentype"), url("font.woff"), local("Another Font")'
 ```
 
-## Build status
-
-[![Build Status](https://travis-ci.org/cburgmer/css-font-face-src.svg?branch=master)](https://travis-ci.org/cburgmer/css-font-face-src)
-
 ## Author
 
 Christoph Burgmer. Licensed under BSD-2-Clause. Reach out [on Twitter](https://twitter.com/cburgmer).
